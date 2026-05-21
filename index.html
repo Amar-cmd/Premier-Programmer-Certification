@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Mastery Certificate Generator</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cinzel:wght@700&family=Montserrat:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div id="loader">Processing Export...</div>
+
+    <header class="app-header">
+        <div class="brand-title">
+            <span class="brand-badge">CERTIFICATION</span> Premier Programmer
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <aside class="sidebar-controls">
+            <div>
+                <h2 class="control-section-title">Design Preferences</h2>
+                <div class="form-group">
+                    <label for="themeSelect">Theme Style</label>
+                    <select id="themeSelect" onchange="changeTheme()">
+                        <option value="theme-blue">Classic Blue</option>
+                        <option value="theme-gold">Elegant Gold & Dark</option>
+                        <option value="theme-green">Modern Green</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="control-section-title">Student Information</h2>
+                <div class="form-group">
+                    <label for="inputName">Full Name</label>
+                    <input type="text" id="inputName" placeholder="Enter Your Name" autocomplete="off" onkeyup="updateCertificate()">
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="control-section-title">External Links (Optional)</h2>
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label for="inputGithub">GitHub Profile</label>
+                    <input type="text" id="inputGithub" placeholder="github.com/username" autocomplete="off" onkeyup="updateCertificate()">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputSocial">LinkedIn / Portfolio</label>
+                    <input type="text" id="inputSocial" placeholder="linkedin.com/in/username" autocomplete="off" onkeyup="updateCertificate()">
+                </div>
+            </div>
+
+            <div class="actions-wrapper">
+                <h2 class="control-section-title">Export</h2>
+                <div class="btn-row">
+                    <button class="btn-secondary" onclick="downloadCerts('png')">Image (PNG)</button>
+                    <button class="btn-secondary" onclick="downloadCerts('jpg')">Image (JPG)</button>
+                </div>
+                <button class="btn-primary" onclick="downloadCerts('pdf')">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Download as PDF
+                </button>
+            </div>
+        </aside>
+
+        <section class="preview-stage">
+            <div class="certificate-wrapper">
+                <div id="certificate" class="certificate theme-blue">
+                    <div class="cert-bg-1"></div>
+                    <div class="cert-bg-2"></div>
+                    <div class="cert-bg-3"></div>
+
+                    <div class="cert-content">
+                        
+                        <div class="qr-code-wrapper">
+                            <img id="qrcode" src="qrcode.png" alt="Course QR code">
+                            <span>Visit Course</span>
+                        </div>
+
+                        <div class="cert-brand-area">
+                            <div class="cert-logo">{∞}</div>
+                            <div class="cert-brand-name">Premier Programmer</div>
+                        </div>
+
+                        <div class="cert-header">
+                            <h1>Certificate of Completion</h1>
+                            <h3>This is to certify that</h3>
+                        </div>
+
+                        <div class="cert-body">
+                            <div class="student-name" id="certName">Your Name Goes Here</div>
+                            
+                            <p>has completed and self-declared the completion of the comprehensive course</p>
+                            
+                            <div class="course-details">
+                                PYTHON MASTERY SERIES - BASICS TO ADVANCED
+                            </div>
+                            
+                            <div class="course-stats">
+                                An intensive curriculum covering <strong>39+ hours</strong> of video content, 
+                                solving <strong>750+ coding questions</strong>, and successfully building 
+                                <strong>20+ projects</strong>. Taught by <span class="instructor-highlight">Premier Programmer</span>.
+                            </div>
+
+                            <div class="social-links-display" id="certLinks"></div>
+                        </div>
+
+                        <div class="cert-footer">
+                            <div class="date-block">
+                                <div class="date-text" id="certDate"></div>
+                                <div class="footer-label">Date of Issue</div>
+                            </div>
+
+                            <div class="signature-block">
+                                <div class="signature-img">Amar Jyoti</div>
+                                <div class="footer-label">Founder & Instructor</div>
+                            </div>
+                        </div>
+
+                       
+                </div>
+            </div>
+        </section>
+    </main>
+ 
+</body>
+</html>
